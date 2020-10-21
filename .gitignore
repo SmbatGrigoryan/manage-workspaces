@@ -1,0 +1,20 @@
+#Common
+# todo revise .idea
+.idea
+.log
+
+#Backend
+backend/.idea
+backend/node_modules
+backend/.env
+backend/package-lock.json
+
+# Frontend # todo revise
+frontend/.idea
+frontend/package-lock.json
+frontend/build
+frontend/node_modules
+frontend/.env
+
+
+
