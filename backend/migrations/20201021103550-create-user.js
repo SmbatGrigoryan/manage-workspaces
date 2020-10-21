@@ -21,6 +21,7 @@ module.exports = {
         type: Sequelize.BOOLEAN,
         defaultValue: false
       },
+      emailVerificationToken: Sequelize.STRING,
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

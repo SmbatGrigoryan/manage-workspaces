@@ -23,7 +23,8 @@ module.exports = (sequelize, DataTypes) => {
     emailIsVerified: {
       type: DataTypes.BOOLEAN,
       defaultValue: false
-    }
+    },
+    emailVerificationToken: DataTypes.STRING,
   }, {
     sequelize,
     modelName: 'User',
