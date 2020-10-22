@@ -1,10 +1,11 @@
 const bcrypt = require('bcryptjs');
-const crypto = require("crypto");
+const crypto = require('crypto');
 
-
-// const {jwtSign, jwtVerify} = require('./util');
 const {User, sequelize} = require('../models');
 const mailer = require('../services/mailer');
+
+const {jwtSign} = require('./util');
+
 
 const {
   BadRequestError,
@@ -78,9 +79,9 @@ const createUser = async (_user) => {
 const verifyEmail = async (_user) => {
 
   const {email, emailVerificationToken} = _user;
-  const userToVerify = await User.findOne({where: {email}})
+  const userToVerify = await User.findOne({where: {email}});
 
-  if (! userToVerify) {
+  if (!userToVerify) {
     throw new NotFoundError({email: wrongCredentials})
   }
   if (userToVerify && userToVerify.dataValues.emailIsVerified) {
@@ -95,7 +96,44 @@ const verifyEmail = async (_user) => {
 }
 
 
+const loginGetVerifiedUser = async (_user) => {
+  const {email, password} = _user;
+
+  if (!email || !password) {
+    throw new ValidationError({email: wrongCredentials, password: wrongCredentials});
+  }
+
+  const userToLogin = await User.findOne({where: {email}});
+
+  if (!userToLogin || (userToLogin && !userToLogin.dataValues.emailIsVerified)) {
+    throw new ValidationError({email: wrongCredentials, password: wrongCredentials});
+  }
+
+  return userToLogin;
+}
+
+
+const checkPassword = async (password, hashedPassword) => {
+  const passwordIsMatched = await bcrypt.compare(password, hashedPassword);
+  if (!passwordIsMatched) {
+    throw new ValidationError({email: wrongCredentials, password: wrongCredentials});
+  }
+}
+
+const generateToken = async (id) => {
+  const expiresIn = '1d';
+  const payload = {sub: id, iat: Date.now()};
+
+  const signedToken = await jwtSign(payload, process.env.PUB_KEY, {expiresIn, algorithm: 'HS256'});
+
+  return `Bearer ${signedToken}`
+};
+
+
 module.exports = {
   createUser,
-  verifyEmail
+  verifyEmail,
+  loginGetVerifiedUser,
+  checkPassword,
+  generateToken
 };

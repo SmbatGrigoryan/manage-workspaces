@@ -3,14 +3,11 @@ const router = express.Router();
 
 const usersController = require('../controllers/usersController');
 
+router.post('/signup', usersController.createUser);
 
-/* GET users listing. */
-router.get('/', function(req, res, next) {
-  res.send('respond with a resource');
-});
+router.patch('/verify-email', usersController.verifyEmail);
 
-router.post('/signup', usersController.createUser)
+router.post('/login', usersController.login);
 
-router.post('/verify-email', usersController.verifyEmail)
 
 module.exports = router;

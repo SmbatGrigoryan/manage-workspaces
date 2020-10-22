@@ -28,6 +28,7 @@ const createUser = async (req, res) => {
   }
 };
 
+
 const verifyEmail = async (req, res) => {
   try {
 
@@ -50,7 +51,33 @@ const verifyEmail = async (req, res) => {
 }
 
 
+const login = async (req, res) => {
+  try {
+
+    const user = await usersService.loginGetVerifiedUser(req.body);
+    await usersService.checkPassword(req.body.password, user.dataValues.password)
+    const token = await usersService.generateToken(user.dataValues.id)
+
+    res
+      .set('Authorization', token)
+      .status(status.OK)
+      .json({email: user.dataValues.email, fullName: user.dataValues.fullName})
+
+  } catch (e) {
+    console.log(e)
+    const error = {...generateErrorResponse(e)};
+
+    if (error.status === status.UNPROCESSABLE_ENTITY) {
+      return res.status(error.status).json({message: error.data})
+    }
+
+    res.status(error.status).end();
+  }
+}
+
+
 module.exports = {
   createUser,
-  verifyEmail
+  verifyEmail,
+  login
 };

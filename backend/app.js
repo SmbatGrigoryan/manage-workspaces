@@ -4,13 +4,15 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const cors = require('cors');
-
+const passport = require('passport');
 
 require('dotenv').config();
 
+const applyPassportStrategy = require('./config/passport');
+applyPassportStrategy(passport);
 
 const usersRouter = require('./routes/users');
-
+const workspacesRouter = require('./routes/workspaces');
 
 const app = express();
 
@@ -18,7 +20,6 @@ app.use(function (req, res, next) {
   res.setHeader('Access-Control-Allow-Origin', process.env.FRONTEND_URL);
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
   res.setHeader('Access-Control-Allow-Headers', 'Accept, Authorization, Access-Control-Allow-Headers, Origin, X-Requested-With, Content-Type');
-  // res.setHeader('Access-Control-Allow-Credentials', true);
   next();
 });
 
@@ -33,6 +34,7 @@ app.use(cookieParser());
 
 
 app.use('/api/v1/users', usersRouter);
+app.use('/api/v1/workspaces', workspacesRouter);
 
 
 // catch 404 and forward to error handler
