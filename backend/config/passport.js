@@ -16,7 +16,8 @@ module.exports = (passport) => {
         const user = await User.findOne({where: {id: jwt_payload.sub, emailIsVerified: true}});
 
         if (user) {
-          return done(null, user);
+          const {id, email, fullName} = user.dataValues;
+          return done(null, {id, email, fullName} );
         } else {
           return done(null, false);
         }

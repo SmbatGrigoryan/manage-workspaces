@@ -20,6 +20,7 @@ app.use(function (req, res, next) {
   res.setHeader('Access-Control-Allow-Origin', process.env.FRONTEND_URL);
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
   res.setHeader('Access-Control-Allow-Headers', 'Accept, Authorization, Access-Control-Allow-Headers, Origin, X-Requested-With, Content-Type');
+  res.setHeader('Access-Control-Expose-Headers', 'Authorization');
   next();
 });
 
@@ -39,6 +40,7 @@ app.use('/api/v1/workspaces', workspacesRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
+  console.log(req)
   next(createError(404));
 });
 

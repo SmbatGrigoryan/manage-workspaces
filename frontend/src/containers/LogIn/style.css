@@ -1,0 +1,6 @@
+.login {
+    min-height: calc(100vh - 160px);
+}
+.error {
+    color: red;
+}

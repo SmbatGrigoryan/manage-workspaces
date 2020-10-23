@@ -7,22 +7,14 @@ const mailer = require('../services/mailer');
 const {jwtSign} = require('./util');
 
 
-const {
-  BadRequestError,
-  AuthorizationError,
-  ForbiddenError,
-  NotFoundError,
-  MethodNotAllowed,
-  ConflictError,
-  ValidationError,
-  InternalError
-} = require('../errors/CustomErrors');
+const {NotFoundError, ConflictError, ValidationError} = require('../errors/CustomErrors');
 
 const {
   notAvailableEmail,
   wrongCredentials,
   emailVerificationText,
-  isAlreadyVerifiedError
+  isAlreadyVerifiedError,
+  fieldIsRequired
 } = require('../constants/defaultMessages');
 
 
@@ -79,6 +71,12 @@ const createUser = async (_user) => {
 const verifyEmail = async (_user) => {
 
   const {email, emailVerificationToken} = _user;
+
+  if (!email || !emailVerificationToken) {
+    throw new ValidationError(
+      {emailVerificationToken: fieldIsRequired, email: fieldIsRequired})
+  }
+
   const userToVerify = await User.findOne({where: {email}});
 
   if (!userToVerify) {
@@ -123,7 +121,6 @@ const checkPassword = async (password, hashedPassword) => {
 const generateToken = async (id) => {
   const expiresIn = '1d';
   const payload = {sub: id, iat: Date.now()};
-
   const signedToken = await jwtSign(payload, process.env.PUB_KEY, {expiresIn, algorithm: 'HS256'});
 
   return `Bearer ${signedToken}`
