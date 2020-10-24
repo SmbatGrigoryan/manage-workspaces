@@ -9,17 +9,17 @@ import useDebounce from './use-debounce';
 
 const Workspace = (props) => {
 
+  const [form] = Form.useForm();
   const [searchTerm, setSearchTerm] = useState('');
-  const [results, setResults] = useState([]);
+  const [results, setResults] = useState('');
   const [isSearching, setIsSearching] = useState(false);
-  const debouncedSearchTerm = useDebounce(searchTerm, 1000);
+  const debouncedSearchTerm = useDebounce(searchTerm, 500);
 
   useEffect(
     () => {
       if (debouncedSearchTerm) {
         setIsSearching(true);
         searchCharacters(debouncedSearchTerm).then(results => {
-          console.log('results >>>>>>>>>>', results) // todo remove
           setIsSearching(false);
           setResults(results);
         });
@@ -48,12 +48,6 @@ const Workspace = (props) => {
     });
   }
 
-
-  useEffect(() => {
-    console.log('useEffect(() =>>>>>>>', results)
-  })
-
-
   useEffect(() => {
     props.getWorkspacesStart()
   }, [])
@@ -63,15 +57,11 @@ const Workspace = (props) => {
     }, [props.createWorkspaceSuccess, props.deleteWorkspaceSuccess,]
   )
 
-  const [form] = Form.useForm();
-  const [suggestSubdomain, setSuggestSubdomain] = useState('');
-  const [subDomainCurrentValue, setSubDomainCurrentValue] = useState('');
-
-
   const onFinish = values => {
     const {name, subDomain} = values;
     props.createWorkspaceStart({name, subDomain})
-    // form.resetFields(['subDomain', 'name'])
+    form.resetFields()
+    setResults('')
   };
 
 
@@ -84,6 +74,7 @@ const Workspace = (props) => {
       <Row type='flex' justify='center' align='middle' className='login'>
         <Col span={12}>
           <Form
+            form={form}
             size='large'
             name='basic'
             initialValues={{
@@ -94,6 +85,8 @@ const Workspace = (props) => {
             onFieldsChange={
               (changedFields, allFields) => props.resetValidationsErrors()}
           >
+            <p>Is Available :  {results}</p>
+
             <Form.Item
               label='Workspace subDomain'
               name='subDomain'
@@ -110,6 +103,7 @@ const Workspace = (props) => {
                   setSearchTerm(e.target.value)
                 }}
               />
+
             </Form.Item>
             {
               props.validationErrors && //todo

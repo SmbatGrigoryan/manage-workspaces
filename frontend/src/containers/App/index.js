@@ -35,10 +35,6 @@ import {
 
 class App extends Component {
 
-  componentDidMount() {}
-
-  componentDidUpdate(prevProps, prevState, snapshot) {
-  }
 
   render() {
     return (

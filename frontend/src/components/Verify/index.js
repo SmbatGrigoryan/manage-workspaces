@@ -30,9 +30,9 @@ const Verify = (props) => {
   return (
     <div>
       <Row type='flex' justify='center' align='middle'>
-        <h3>You have received verification code</h3>
+        <h3>You have received verification code. </h3>
         <h3>
-          Please check your {props.user && props.user.email && props.user.email} email
+           Please check your {props.user && props.user.email && props.user.email} email
           email and input the code
         </h3>
       </Row>

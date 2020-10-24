@@ -26,7 +26,7 @@ const LogIn = (props) => {
   useEffect(() => {
       if ( ! authInitialState && props.isAuthenticated) {
         props.history.push('/user-workspaces')
-        // todo
+
       }
     }, [props.isAuthenticated]);
 
@@ -52,7 +52,6 @@ const LogIn = (props) => {
             onFinish={onFinish}
             onFinishFailed={onFinishFailed}
             onFieldsChange={(changedFields, allFields) => {
-              // props.resetAuthError()
             }}
           >
             <Form.Item

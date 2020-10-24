@@ -1,7 +1,4 @@
-import {
-  LOGIN_START, 
-  LOGIN_SUCCESS
-} from "./constants";
+import {LOGIN_START, LOGIN_SUCCESS} from "./constants";
 
 
 export const loginStart = (data) => {

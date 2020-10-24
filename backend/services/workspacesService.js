@@ -14,7 +14,7 @@ const createWorkspace = async (workspaceToCreate, user) => {
   const workspace = await Workspace.findOne({where: {subDomain}});
 
   if (workspace) {
-    throw new ConflictError({subDomain: isAlreadyInUse})
+    throw new ConflictError({subDomain: `${subDomain} ${isAlreadyInUse}` })
   }
 
   return Workspace.create({userId: user.id, name, subDomain});

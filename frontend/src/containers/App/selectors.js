@@ -51,11 +51,6 @@ export const makeSelectIsAuthenticated = createSelector(
   global => global.isAuthenticated
 );
 
-export const makeSelectLoad = createSelector(
-  [selectGlobal],
-  global => global.loading
-);
-
 export const makeSelectUser = createSelector(
   selectGlobal,
   global => global.user

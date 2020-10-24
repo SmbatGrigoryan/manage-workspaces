@@ -133,7 +133,7 @@ const appReducer = (state = initialState, action) => {
       });
     }
 
-    case RESET_UNKNOWN_ERROR: { // todo --------------------
+    case RESET_UNKNOWN_ERROR: {
       return Object.assign({}, state, {
         unknownError: ''
       });

@@ -1,4 +1,4 @@
-import {call, put, takeLatest} from "redux-saga/effects";
+import {call, put, takeLatest} from 'redux-saga/effects';
 
 import remote from '../../utils/request'
 
@@ -23,12 +23,10 @@ function* _loginStart(action) {
       }
     });
     if (response.success) {
-      // yield localStorage.setItem('access_token', response.data.access_token) // todo access_token
 
       yield put(loginSuccess(response.data));
     } else {
       yield put(loginFail(response.error));
-      // todo handel error
     }
   } catch (e) {
     console.log(e);

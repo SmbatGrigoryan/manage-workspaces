@@ -34,6 +34,7 @@ const Signup = (props) => {
             onFieldsChange={
               (changedFields, allFields) => props.resetValidationsErrors()}
           >
+            <Form.Item><h3>Sign Up</h3></Form.Item>
             <Form.Item
               label='Full Name'
               name='fullName'

@@ -42,9 +42,6 @@ export const getWorkspacesFail = (error) => {
   return {type: GET_WORKSPACES_FAIL, error}
 };
 
-
-
-
 export const createWorkspaceStart = (data) => {
   return {type: CREATE_WORKSPACE_START, data}
 };
@@ -77,10 +74,6 @@ export const verifyFail = (error) => {
 
 export const validationsErrors = (error) => {
   return {type: VALIDATION_ERROR, error}
-};
-
-export const serverErrors = (error) => {
-  return {type: SERVER_ERROR, error}
 };
 
 export const resetServerErrors = () => {
