@@ -39,10 +39,7 @@ const Signup = (props) => {
               label='Full Name'
               name='fullName'
               rules={[
-                {
-                  required: true,
-                  message: 'Please input your Full Name!',
-                }
+                {required: true, message: 'Please input your Full Name!',}
               ]}
             >
               <Input placeholder='Full Name'/>
@@ -57,14 +54,8 @@ const Signup = (props) => {
               name="email"
               label="E-mail"
               rules={[
-                {
-                  type: 'email',
-                  message: 'The input is not valid E-mail!',
-                },
-                {
-                  required: true,
-                  message: 'Please input your E-mail!',
-                },
+                {type: 'email', message: 'The input is not valid E-mail!',},
+                {required: true, message: 'Please input your E-mail!',},
               ]}
             >
               <Input placeholder='Full Name'/>
@@ -78,10 +69,7 @@ const Signup = (props) => {
               label='Password'
               name='password'
               rules={[
-                {
-                  required: true,
-                  message: 'Please input password!',
-                }
+                {required: true, message: 'Please input password!',}
               ]}
             >
               <Input.Password placeholder='Password'/>

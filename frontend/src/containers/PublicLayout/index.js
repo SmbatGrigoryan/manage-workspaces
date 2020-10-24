@@ -1,6 +1,5 @@
 import React, {Fragment} from 'react';
 import {Route} from 'react-router-dom';
-
 import {Layout} from 'antd';
 
 import Header from '../../components/Header';

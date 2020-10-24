@@ -23,10 +23,9 @@ const handleErrorFromResponse = (responseStatusCode, _response) => {
     store.dispatch(actionCreators.validationsErrors(_response.message));
   }
 
-  if (responseStatusCode === 401) { // todo improve this approach
+  if (responseStatusCode === 401) {
 
     error.type = AUTHORIZATION_ERROR
-    console.log('{...error, ..._response}', {...error, ..._response})
     return {...error, ..._response}
   }
 

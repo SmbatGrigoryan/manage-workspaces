@@ -14,7 +14,7 @@ module.exports =  (
     let transporter = nodemailer.createTransport({
 
         service: 'gmail',
-        // host: 'smtp.fluxtechs.com',
+        // host: '',
         auth: {
             user: TRANSPORTER_EMAIL,
             pass: TRANSPORTER_PASSWORD

@@ -50,7 +50,6 @@ function* _signupStart(action) {
       yield put(signupSuccess(response.data));
     } else {
       yield put(signupFail(response.error));
-      // todo handel error
     }
   } catch (e) {
     console.log(e);
@@ -83,8 +82,8 @@ function* _verifyStart(action) {
 
 
 function* _createWorkspace(action) {
-  const url = `${process.env.REACT_APP_BACKEND_URL}/workspaces`; // todo
-  const token = localStorage.getItem('token'); // todo maby yield
+  const url = `${process.env.REACT_APP_BACKEND_URL}/workspaces`;
+  const token = localStorage.getItem('token');
   try {
     const response = yield call(remote, url, {
       route: url,
@@ -99,7 +98,6 @@ function* _createWorkspace(action) {
       yield put(createWorkspaceSuccess(response.data));
     } else {
       yield put(createWorkspaceFail(response.error));
-      // todo handel error
     }
   } catch (e) {
     console.log(e);
@@ -108,8 +106,8 @@ function* _createWorkspace(action) {
 
 
 function* _getWorkspaces(action) {
-  const url = `${process.env.REACT_APP_BACKEND_URL}/workspaces`; // todo
-  const token = localStorage.getItem('token'); // todo maby yield
+  const url = `${process.env.REACT_APP_BACKEND_URL}/workspaces`;
+  const token = localStorage.getItem('token');
   try {
     const response = yield call(remote, url, {
       route: url,
@@ -117,14 +115,12 @@ function* _getWorkspaces(action) {
       body: JSON.stringify(action.data),
       headers: {
         'Authorization': token,
-        // 'Content-Type': 'application/json'
       }
     });
     if (response.success) {
       yield put(getWorkspacesSuccess(response.data));
     } else {
       yield put(getWorkspacesFail(response.error));
-      // todo handel error
     }
   } catch (e) {
     console.log(e);
@@ -135,8 +131,7 @@ function* _getWorkspaces(action) {
 
 
 function* _deleteWorkspace(action) {
-  console.log('action.data >>>>>>>>', action.data)
-  const url = `${process.env.REACT_APP_BACKEND_URL}/workspaces`; // todo
+  const url = `${process.env.REACT_APP_BACKEND_URL}/workspaces`;
   const token = localStorage.getItem('token');
   try {
     const response = yield call(remote, url, {
@@ -152,7 +147,6 @@ function* _deleteWorkspace(action) {
       yield put(deleteWorkspaceSuccess(response.data));
     } else {
       yield put(deleteWorkspaceFail(response.error));
-      // todo handel error
     }
   } catch (e) {
     console.log(e);

@@ -13,7 +13,7 @@ const Workspace = (props) => {
   const [searchTerm, setSearchTerm] = useState('');
   const [results, setResults] = useState('');
   const [isSearching, setIsSearching] = useState(false);
-  const debouncedSearchTerm = useDebounce(searchTerm, 500);
+  const debouncedSearchTerm = useDebounce(searchTerm, 300);
 
   useEffect(
     () => {
@@ -42,10 +42,7 @@ const Workspace = (props) => {
           'Content-Type': 'application/json'
         }
       }
-    ).then(r => {
-      console.log('r >>>>>>>>', r)
-      return r.json()
-    });
+    ).then(r => r.json());
   }
 
   useEffect(() => {
@@ -91,10 +88,7 @@ const Workspace = (props) => {
               label='Workspace subDomain'
               name='subDomain'
               rules={[
-                {
-                  required: true,
-                  message: 'Please input New Workspace!',
-                }
+                {required: true, message: 'Please input New Workspace!',}
               ]}
             >
               <Input
@@ -115,10 +109,7 @@ const Workspace = (props) => {
               label='Workspace Name'
               name='name'
               rules={[
-                {
-                  required: true,
-                  message: 'Please input New Workspace!',
-                }
+                {required: true, message: 'Please input New Workspace!',}
               ]}
             >
               <Input placeholder='Workspace Name'/>
@@ -154,7 +145,6 @@ const Workspace = (props) => {
                 <Button
                   type='danger'
                   onClick={e => {
-                    console.log('do something id', id)
                     props.deleteWorkspaceStart(id)
                   }}
                 >Delete</Button>

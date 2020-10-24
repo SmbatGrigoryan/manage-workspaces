@@ -58,10 +58,7 @@ const LogIn = (props) => {
               label=''
               name='email'
               rules={[
-                {
-                  required: true,
-                  message: 'Please input your email!',
-                }
+                {required: true, message: 'Please input your email!',}
               ]}
             >
               <Input placeholder='email'/>
@@ -76,10 +73,7 @@ const LogIn = (props) => {
               label=''
               name='password'
               rules={[
-                {
-                  required: true,
-                  message: 'Please input your password!',
-                }
+                {required: true, message: 'Please input your password!',}
               ]}
             >
               <Input.Password placeholder='Password'/>
@@ -100,7 +94,6 @@ const LogIn = (props) => {
           </Form>
         </Col>
       </Row>
-
     </div>
   );
 };

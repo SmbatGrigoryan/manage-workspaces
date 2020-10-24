@@ -21,7 +21,7 @@ import {
   makeSelectCreateWorkspaceSuccess,
   makeSelectGetWorkspacesSuccess,
   makeSelectWorkspaces,
-makeSelectDeleteWorkspaceSuccess
+  makeSelectDeleteWorkspaceSuccess
 } from './selectors';
 
 import {

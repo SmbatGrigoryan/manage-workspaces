@@ -3,11 +3,11 @@ const crypto = require('crypto');
 
 const {User, sequelize} = require('../models');
 const mailer = require('../services/mailer');
+const {NotFoundError, ConflictError, ValidationError} = require('../errors/CustomErrors');
 
 const {jwtSign} = require('./util');
 
 
-const {NotFoundError, ConflictError, ValidationError} = require('../errors/CustomErrors');
 
 const {
   notAvailableEmail,

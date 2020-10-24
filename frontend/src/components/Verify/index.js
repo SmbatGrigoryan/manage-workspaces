@@ -32,8 +32,7 @@ const Verify = (props) => {
       <Row type='flex' justify='center' align='middle'>
         <h3>You have received verification code. </h3>
         <h3>
-           Please check your {props.user && props.user.email && props.user.email} email
-          email and input the code
+           Please check your {props.user && props.user.email && props.user.email} email and input the code
         </h3>
       </Row>
 
@@ -54,10 +53,7 @@ const Verify = (props) => {
               label='Verification Code'
               name='emailVerificationToken'
               rules={[
-                {
-                  required: true,
-                  message: 'Please input verification code!',
-                }
+                {required: true, message: 'Please input verification code!',}
               ]}
             >
               <Input placeholder='Verification Code'/>

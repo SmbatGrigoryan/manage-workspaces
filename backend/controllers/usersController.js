@@ -8,6 +8,7 @@ const validator = require('../validators/validator');
 const createUser = async (req, res) => {
   try {
     const validationErrors = validator.newUser(req.body);
+
     if (validationErrors !== null) {
       return res.status(status.UNPROCESSABLE_ENTITY)
         .json({message: validationErrors})
