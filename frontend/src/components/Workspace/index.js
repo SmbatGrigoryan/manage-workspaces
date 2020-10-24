@@ -24,7 +24,7 @@ const Workspace = (props) => {
           setResults(results);
         });
       } else {
-        // setResults([]);
+        setResults('');
       }
     },
     [debouncedSearchTerm] // Only call effect if debounced search term changes
